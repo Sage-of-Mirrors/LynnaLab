@@ -126,6 +126,8 @@ namespace LynnaLab
             this.mapping = mapping;
             keyText = new string[mapping.GetAllStrings().Count];
 
+            combobox1.Model = new ListStore(typeof(string),typeof(string));
+
             int i=0;
             foreach (string key in mapping.GetAllStrings()) {
                 string text = mapping.RemovePrefix(key);

@@ -15,8 +15,7 @@ namespace LynnaLab {
 public abstract class GameObject : ProjectIndexedDataType {
 
     // Using a dictionary because I don't know what the upper limit is to # of animations...
-    Dictionary<int,ObjectAnimation> _animations = new Dictionary<int,ObjectAnimation>();
-
+    public Dictionary<int,ObjectAnimation> Animations = new Dictionary<int,ObjectAnimation>();
 
     public GameObject(Project p, int index) : base(p, index) {
     }
@@ -82,11 +81,11 @@ public abstract class GameObject : ProjectIndexedDataType {
 
     public ObjectAnimation GetAnimation(int i) {
         try {
-            return _animations[i];
+            return Animations[i];
         }
         catch(KeyNotFoundException) {
             var anim = new ObjectAnimation(this, i);
-            _animations[i] = anim;
+            Animations[i] = anim;
             return anim;
         }
     }

@@ -91,6 +91,19 @@ public class ObjectAnimationFrame {
         }
     }
 
+    public void SaveFrame(string fileName)
+    {
+        if (bitmaps == null)
+            throw new InvalidAnimationException();
+
+        int _numSprites = _oamData.GetIntValue(0);
+
+        for (int i = 0; i < _numSprites; i++)
+        {
+            bitmaps[i].Item1.Save(fileName + i.ToString() + ".png");
+        }
+    }
+
     /// <summary>
     ///  Will throw InvalidAnimationException if initialization failed earlier...
     ///  TODO: does drawing code really belong here?

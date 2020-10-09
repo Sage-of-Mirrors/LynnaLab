@@ -500,6 +500,20 @@ namespace LynnaLab
             return GetFileWithLabel(label).GetData(label, offset);
         }
 
+        public List<Data> GetDataList(string label, int offset=0)
+        {
+            List<Data> NewList = new List<Data>();
+            FileComponent ListSource = GetFileWithLabel(label).GetData(label, offset);
+
+            while(!(ListSource is Label))
+            {
+                NewList.Add(ListSource as Data);
+                ListSource = ListSource.Next;
+            }
+
+            return NewList;
+        }
+
         public string GetDefinition(string val)
         {
             string mapping;

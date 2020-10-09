@@ -1,4 +1,5 @@
 using System.Drawing;
+using System.Collections.Generic;
 
 namespace LynnaLab
 {
@@ -13,6 +14,7 @@ namespace LynnaLab
 /// seems common, particularly when animations are undefined for an object).
 /// </summary>
 public class ObjectAnimation {
+    public List<ObjectAnimationFrame> Frames = new List<ObjectAnimationFrame>();
     GameObject _gameObject;
     int _animationIndex;
 
@@ -62,6 +64,13 @@ public class ObjectAnimation {
         }
     }
 
+    public ObjectAnimation(GameObject gameObject, Data srcData, int index)
+    {
+        _gameObject = gameObject;
+        _animationIndex = index;
+
+        _animationData = srcData;
+    }
 
     public ObjectAnimationFrame GetFrame(int i) {
         // TODO: cache

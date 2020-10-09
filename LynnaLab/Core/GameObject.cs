@@ -15,9 +15,16 @@ namespace LynnaLab {
 public abstract class GameObject : ProjectIndexedDataType {
 
     // Using a dictionary because I don't know what the upper limit is to # of animations...
-    public Dictionary<int,ObjectAnimation> Animations = new Dictionary<int,ObjectAnimation>();
+    public List<ObjectAnimation> Animations = new List<ObjectAnimation>();
 
     public GameObject(Project p, int index) : base(p, index) {
+        string animTableName = TypeName.ToLower() + "AnimationTable";
+        List<Data> AnimData = Project.GetDataList(Project.GetData(animTableName, ID*2).GetValue(0));
+
+        for (int i = 0; i < AnimData.Count; i++)
+        {
+            Animations.Add(new ObjectAnimation(this, Project.GetData(AnimData[i].GetValue(0)), i));
+        }
     }
 
     public byte ID {
